@@ -5,7 +5,7 @@ Usage::
     python -m scripts.train_models                      # both problems, config defaults
     python -m scripts.train_models --problem demand     # one problem
     python -m scripts.train_models --n-trials 10        # faster tuning
-    python -m scripts.train_models --no-register        # skip Model Registry
+    python -m scripts.train_models --no-register        # skip Model Regi   stry
 """
 
 from __future__ import annotations
