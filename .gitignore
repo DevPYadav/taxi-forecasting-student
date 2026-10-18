@@ -54,3 +54,5 @@ crash.log
 
 # Coverage report (generated in CI)
 coverage.xml
+tfplan
+*.tfplan
