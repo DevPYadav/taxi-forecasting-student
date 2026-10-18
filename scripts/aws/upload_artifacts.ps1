@@ -24,7 +24,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 $RepoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
-$TfDir = Join-Path $RepoRoot "infra\terraform"
+$TfDir = Join-Path $RepoRoot "infra/terraform"
 
 function Assert-Tool($name) {
     if (-not (Get-Command $name -ErrorAction SilentlyContinue)) {
@@ -42,7 +42,7 @@ if (-not $Bucket) {
 }
 if (-not $Bucket) { throw "Could not determine the CI/CD artifacts bucket." }
 
-foreach ($p in @("mlruns", "mlflow.db", "data\processed\demand_hourly.parquet")) {
+foreach ($p in @("mlruns", "mlflow.db", "data/processed/demand_hourly.parquet")) {
     if (-not (Test-Path $p)) {
         throw "Missing '$p'. Train the models first (python scripts/train_models.py)."
     }
@@ -51,6 +51,6 @@ foreach ($p in @("mlruns", "mlflow.db", "data\processed\demand_hourly.parquet"))
 Write-Host "==> Uploading artifacts to s3://$Bucket" -ForegroundColor Cyan
 aws s3 sync mlruns "s3://$Bucket/mlruns" --region $Region --only-show-errors
 aws s3 cp mlflow.db "s3://$Bucket/mlflow.db" --region $Region --only-show-errors
-aws s3 cp data\processed\demand_hourly.parquet "s3://$Bucket/demand_hourly.parquet" --region $Region --only-show-errors
+aws s3 cp data/processed/demand_hourly.parquet "s3://$Bucket/demand_hourly.parquet" --region $Region --only-show-errors
 
 Write-Host "OK: artifacts uploaded to s3://$Bucket" -ForegroundColor Green
