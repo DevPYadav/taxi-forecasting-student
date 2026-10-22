@@ -56,3 +56,4 @@ crash.log
 coverage.xml
 tfplan
 *.tfplan
+logs/
